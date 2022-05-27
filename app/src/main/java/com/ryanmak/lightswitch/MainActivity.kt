@@ -30,10 +30,15 @@ class MainActivity : AppCompatActivity() {
 
         binding.slider.addOnChangeListener { _, value, _ ->
             viewModel.setDimIntensity(value)
+            binding.intensityCounter.text = value.toString().dropLast(2)
         }
 
         binding.screenOnRadioGroup.setOnCheckedChangeListener { _, id ->
             viewModel.setScreenOnEnabled(id == R.id.onButtonScreenOn)
+        }
+
+        binding.saveAndCloseButton.setOnClickListener {
+            finish()
         }
     }
 
@@ -50,6 +55,7 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launch {
             viewModel.dimIntensityFlow.collect { value ->
                 binding.slider.value = value
+                binding.intensityCounter.text = value.toString().dropLast(2)
             }
         }
 

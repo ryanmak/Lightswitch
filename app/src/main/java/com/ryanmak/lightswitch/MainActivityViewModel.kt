@@ -23,6 +23,7 @@ class MainActivityViewModel(app: Application) : AndroidViewModel(app) {
 
     init {
         sharedPrefs = app.getSharedPreferences(KEY_SETTINGS, Context.MODE_PRIVATE)
+
         dimEnabledFlow.value = sharedPrefs.getBoolean(DIM_ENABLED, false)
         dimIntensityFlow.value = sharedPrefs.getFloat(DIM_INTENSITY, 0f)
         screenOnEnabledFlow.value = sharedPrefs.getBoolean(SCREEN_ON_ENABLED, false)
