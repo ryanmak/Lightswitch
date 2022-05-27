@@ -23,12 +23,12 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/dimScreenCardTitle"
+                android:id="@+id/dimScreenTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:text="Dim screen"
+                android:text="@string/label_dim_screen"
                 android:textSize="24sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -39,10 +39,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:text="Enable"
+                android:text="@string/label_enable"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/dimScreenCardTitle" />
+                app:layout_constraintTop_toBottomOf="@+id/dimScreenTitle" />
 
             <RadioGroup
                 android:id="@+id/dimScreenRadioGroup"
@@ -56,14 +56,14 @@
                     android:id="@+id/onButtonDim"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="On" />
+                    android:text="@string/value_on" />
 
                 <RadioButton
                     android:id="@+id/offButtonDim"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:checked="true"
-                    android:text="Off" />
+                    android:text="@string/value_off" />
 
             </RadioGroup>
 
@@ -73,7 +73,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
-                android:text="Dim intensity"
+                android:text="@string/label_dim_intensity"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/dimScreenRadioGroup" />
@@ -85,9 +85,10 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
+                android:contentDescription="@string/value_slider_description"
+                android:stepSize="1"
                 android:valueFrom="0"
                 android:valueTo="100"
-                android:stepSize="1"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -98,10 +99,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:tooltipText="When enabled, the screen will dim according to the intensity that you have set"
-                app:layout_constraintBottom_toBottomOf="@+id/dimScreenCardTitle"
-                app:layout_constraintStart_toEndOf="@+id/dimScreenCardTitle"
-                app:layout_constraintTop_toTopOf="@+id/dimScreenCardTitle"
+                android:contentDescription="@string/value_info_button"
+                android:tooltipText="@string/value_tooltip_dim"
+                app:layout_constraintBottom_toBottomOf="@+id/dimScreenTitle"
+                app:layout_constraintStart_toEndOf="@+id/dimScreenTitle"
+                app:layout_constraintTop_toTopOf="@+id/dimScreenTitle"
                 app:srcCompat="@drawable/ic_info" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -128,7 +130,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:text="Screen On"
+                android:text="@string/label_screen_on"
                 android:textSize="24sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -139,7 +141,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:text="Enable"
+                android:text="@string/label_enable"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/screenOnCardTitle" />
@@ -158,14 +160,14 @@
                     android:id="@+id/onButtonScreenOn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="On" />
+                    android:text="@string/value_on" />
 
                 <RadioButton
                     android:id="@+id/offButtonScreenOn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:checked="true"
-                    android:text="Off" />
+                    android:text="@string/value_off" />
             </RadioGroup>
 
             <ImageView
@@ -173,7 +175,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:tooltipText="When enabled, the screen will permanently stay on unless you lock your screen"
+                android:contentDescription="@string/value_info_button"
+                android:tooltipText="@string/value_tooltip_screen_on"
                 app:layout_constraintBottom_toBottomOf="@+id/screenOnCardTitle"
                 app:layout_constraintStart_toEndOf="@+id/screenOnCardTitle"
                 app:layout_constraintTop_toTopOf="@+id/screenOnCardTitle"
