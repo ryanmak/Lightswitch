@@ -5,10 +5,10 @@
     <color name="twilight_blue">#2B3B81</color>
     <color name="urban_blue">#2B3B81</color>
     <color name="teal_700">#FF018786</color>
-    <color name="card_background_black">#E6000000</color>
+    <color name="card_background_black">#66000000</color>
     <color name="background_black">#121212</color>
     <color name="white_overlay">#0DFFFFFF</color>
     <color name="white_text_title">#CCFFFFFF</color>
-    <color name="white_text_body">#99FFFFFF</color>
+    <color name="white_text_body">#B3FFFFFF</color>
     <color name="black">#000000</color>
 </resources>

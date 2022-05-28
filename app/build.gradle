@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    compileSdk 31
 
     buildFeatures {
         viewBinding = true
@@ -13,7 +13,7 @@ android {
     defaultConfig {
         applicationId "com.ryanmak.lightswitch"
         minSdk 28
-        targetSdk 32
+        targetSdk 31
         versionCode 1
         versionName "1.0"
 
