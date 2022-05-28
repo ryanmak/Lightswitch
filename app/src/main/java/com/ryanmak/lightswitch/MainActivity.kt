@@ -26,6 +26,15 @@ class MainActivity : AppCompatActivity() {
 
     private var overlayService = Intent(this@MainActivity, OverlayService::class.java)
 
+    private var activityLauncher = registerForActivityResult(StartActivityForResult()) {
+        if (!Settings.canDrawOverlays(this)) {
+            Toast.makeText(this, "Permission not granted", Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(this, "Thank you!", Toast.LENGTH_SHORT).show()
+            viewModel.setDimEnabled(true)
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -124,19 +133,12 @@ class MainActivity : AppCompatActivity() {
             Uri.parse("package:$packageName")
         )
 
-       registerForActivityResult(StartActivityForResult()) {
-            if (!Settings.canDrawOverlays(this)) {
-                Toast.makeText(this, "Permission not granted", Toast.LENGTH_SHORT).show()
-            } else {
-                Toast.makeText(this, "Thank you!", Toast.LENGTH_SHORT).show()
-                viewModel.setDimEnabled(true)
-            }
-        }.launch(intent)
+        activityLauncher.launch(intent)
     }
 
     private fun canShowOverlay(show: Boolean) {
         if (show) {
-            configOverlayService()
+            configOverlayService(true)
             startService(overlayService)
         } else {
             stopService(overlayService)
@@ -148,11 +150,12 @@ class MainActivity : AppCompatActivity() {
      * set to true, the service will run on start up, dimming the screen even if the feature is
      * turned off. To fix this, we set the *enabled* state here when a button click is detected.
      */
-    private fun configOverlayService() {
+    private fun configOverlayService(enabled: Boolean) {
         val component = ComponentName(applicationContext, OverlayService::class.java)
-        applicationContext.packageManager.setComponentEnabledSetting(
+        val pm: PackageManager = applicationContext.packageManager
+        pm.setComponentEnabledSetting(
             component,
-            PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
+            if (enabled) PackageManager.COMPONENT_ENABLED_STATE_ENABLED else PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
             PackageManager.DONT_KILL_APP
         )
     }
