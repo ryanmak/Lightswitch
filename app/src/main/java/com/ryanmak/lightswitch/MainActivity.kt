@@ -45,6 +45,7 @@ class MainActivity : AppCompatActivity() {
             val enabled = (id == R.id.onButtonDim)
             if (enabled && !Settings.canDrawOverlays(this)) {
                 radioGroup.check(R.id.offButtonDim)
+                viewModel.setDimEnabled(false)
                 launchPermissionActivity()
                 return@setOnCheckedChangeListener
             }

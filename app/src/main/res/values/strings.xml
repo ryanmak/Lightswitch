@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">lightswitch</string>
+    <string name="app_name">Lightswitch</string>
     <string name="label_dim_screen">Dim screen</string>
     <string name="label_enable">Enable</string>
     <string name="value_on">On</string>
@@ -10,4 +10,5 @@
     <string name="value_tooltip_dim">When enabled, the screen will dim according to the intensity that you have set</string>
     <string name="value_tooltip_screen_on">When enabled, the screen will permanently stay on unless you lock your screen</string>
     <string name="value_slider_description">Slider to adjust brightness</string>
+    <string name="label_save_and_close">Save and Close</string>
 </resources>
