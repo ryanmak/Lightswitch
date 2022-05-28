@@ -4,16 +4,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".MainActivity">
+    android:background="@color/background_black"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/black"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+        <TextView
+            android:id="@+id/toolbarTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textColor="@color/white_text_title"
+            android:textSize="21sp" />
+    </com.google.android.material.appbar.MaterialToolbar>
 
     <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="12dp"
+        android:backgroundTint="@color/white_overlay"
         app:cardCornerRadius="5dp"
+        app:cardElevation="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -29,6 +49,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:text="@string/label_dim_screen"
+                android:textColor="@color/white_text_body"
                 android:textSize="24sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -40,15 +61,17 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:text="@string/label_enable"
+                android:textColor="@color/white_text_body"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/dimScreenTitle" />
 
             <RadioGroup
                 android:id="@+id/dimScreenRadioGroup"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
+                app:layout_constraintEnd_toEndOf="@+id/dimScreenTitle"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/enableDimnessLabel">
 
@@ -56,14 +79,16 @@
                     android:id="@+id/onButtonDim"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/value_on" />
+                    android:text="@string/value_on"
+                    android:textColor="@color/white_text_body" />
 
                 <RadioButton
                     android:id="@+id/offButtonDim"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:checked="true"
-                    android:text="@string/value_off" />
+                    android:text="@string/value_off"
+                    android:textColor="@color/white_text_body" />
 
             </RadioGroup>
 
@@ -74,6 +99,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
                 android:text="@string/label_dim_intensity"
+                android:textColor="@color/white_text_body"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/dimScreenRadioGroup" />
@@ -84,15 +110,17 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
-                android:layout_marginBottom="8dp"
                 android:contentDescription="@string/value_slider_description"
                 android:stepSize="1"
                 android:valueFrom="0"
                 android:valueTo="100"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:labelBehavior="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView3" />
+                app:layout_constraintTop_toBottomOf="@+id/textView3"
+                app:thumbColor="@color/urban_blue"
+                app:tickVisible="false"
+                app:trackColor="@color/urban_blue" />
 
             <ImageView
                 android:id="@+id/dimInfoButton"
@@ -106,16 +134,42 @@
                 app:layout_constraintTop_toTopOf="@+id/dimScreenTitle"
                 app:srcCompat="@drawable/ic_info" />
 
+            <TextView
+                android:id="@+id/intensity_counter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:textColor="@color/white_text_body"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/slider"
+                tools:text="50" />
+
+            <ImageView
+                android:id="@+id/dimIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_night"
+                tools:visibility="visible" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="12dp"
+        android:backgroundTint="@color/white_overlay"
         app:cardCornerRadius="5dp"
+        app:cardElevation="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -131,6 +185,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:text="@string/label_screen_on"
+                android:textColor="@color/white_text_body"
                 android:textSize="24sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -142,17 +197,19 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:text="@string/label_enable"
+                android:textColor="@color/white_text_body"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/screenOnCardTitle" />
 
             <RadioGroup
                 android:id="@+id/screenOnRadioGroup"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginBottom="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/screenOnCardTitle"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/enableScreenOnLabel">
 
@@ -160,14 +217,16 @@
                     android:id="@+id/onButtonScreenOn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/value_on" />
+                    android:text="@string/value_on"
+                    android:textColor="@color/white_text_body" />
 
                 <RadioButton
                     android:id="@+id/offButtonScreenOn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:checked="true"
-                    android:text="@string/value_off" />
+                    android:text="@string/value_off"
+                    android:textColor="@color/white_text_body" />
             </RadioGroup>
 
             <ImageView
@@ -181,6 +240,25 @@
                 app:layout_constraintStart_toEndOf="@+id/screenOnCardTitle"
                 app:layout_constraintTop_toTopOf="@+id/screenOnCardTitle"
                 app:srcCompat="@drawable/ic_info" />
+
+            <ImageView
+                android:id="@+id/screenOnIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_bulb_lighting"
+                tools:visibility="visible" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
+
+    <Button
+        android:id="@+id/saveAndCloseButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:text="@string/label_save_and_close" />
 </LinearLayout>
