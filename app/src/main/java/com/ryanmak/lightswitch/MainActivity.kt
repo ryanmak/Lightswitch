@@ -23,8 +23,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: MainActivityViewModel
-
-    private var overlayService = Intent(this@MainActivity, OverlayService::class.java)
+    private lateinit var overlayService: Intent
 
     private var activityLauncher = registerForActivityResult(StartActivityForResult()) {
         if (!Settings.canDrawOverlays(this)) {
@@ -39,6 +38,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        overlayService = Intent(this@MainActivity, OverlayService::class.java)
 
         viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
         setupFlows()
@@ -141,6 +142,7 @@ class MainActivity : AppCompatActivity() {
             configOverlayService(true)
             startService(overlayService)
         } else {
+            configOverlayService(false)
             stopService(overlayService)
         }
     }

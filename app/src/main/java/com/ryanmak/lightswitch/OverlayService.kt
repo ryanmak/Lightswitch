@@ -8,11 +8,13 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.PixelFormat
+import android.os.Build
 import android.os.IBinder
+import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.view.WindowManager
+import android.view.WindowManager.LayoutParams.*
 import androidx.core.app.NotificationCompat
 
 
@@ -26,7 +28,7 @@ class OverlayService : Service() {
         intensity = intent?.getFloatExtra("intensity", 0f)
 
         intensity?.let {
-            overlay.setBackgroundColor(Color.argb(it/100, 0f, 0f, 0f))
+            overlay.setBackgroundColor(Color.argb(it / 100, 0f, 0f, 0f))
         }
 
         return super.onStartCommand(intent, flags, startId)
@@ -43,20 +45,37 @@ class OverlayService : Service() {
         val context = applicationContext
         val inflater = context?.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
-        val params = WindowManager.LayoutParams(
-            ViewGroup.LayoutParams.MATCH_PARENT,
-            ViewGroup.LayoutParams.MATCH_PARENT,
-            WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
-            WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE or
-                    WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL or
-                    WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
-            PixelFormat.TRANSLUCENT
-        ).apply { alpha = 0.8f }
-
-        overlay = inflater.inflate(R.layout.fragment_overlay, null)
         wm = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
-        wm.addView(overlay, params)
+        overlay = inflater.inflate(R.layout.fragment_overlay, null)
 
+        val params = WindowManager.LayoutParams(
+            MATCH_PARENT,
+            MATCH_PARENT,
+            TYPE_APPLICATION_OVERLAY,
+            FLAG_NOT_TOUCHABLE or        // Ignore touch events
+                    FLAG_NOT_FOCUSABLE or      // Ignore keyboard focus requests
+                    FLAG_LAYOUT_NO_LIMITS or   // Ignore screen bounds part 1
+                    FLAG_LAYOUT_IN_SCREEN,     // Ignore screen bounds part 2
+            PixelFormat.TRANSLUCENT
+        ).apply {
+            alpha = 0.8f
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                isFitInsetsIgnoringVisibility = false
+                fitInsetsTypes = 0
+                y = if (Build.VERSION.SDK_INT == Build.VERSION_CODES.R) -1 else 0
+                val metrics = DisplayMetrics()
+                wm.defaultDisplay.getRealMetrics(metrics)
+                height = metrics.heightPixels + getNavigationBarHeight() + 1
+            }
+            if (Build.VERSION.SDK_INT == Build.VERSION_CODES.Q) {
+                val metrics = DisplayMetrics()
+                wm.defaultDisplay.getRealMetrics(metrics)
+                height = metrics.heightPixels + getNavigationBarHeight()
+            }
+        }
+
+        wm.addView(overlay, params)
         startOverlayService()
     }
 
@@ -84,5 +103,14 @@ class OverlayService : Service() {
             .setCategory(Notification.CATEGORY_SERVICE)
             .build()
         startForeground(2, notification)
+    }
+
+    private fun getNavigationBarHeight(): Int {
+        val metrics = DisplayMetrics()
+        wm.defaultDisplay.getMetrics(metrics)
+        val usableHeight = metrics.heightPixels
+        wm.defaultDisplay.getRealMetrics(metrics)
+        val realHeight = metrics.heightPixels
+        return if (realHeight > usableHeight) realHeight - usableHeight else 0
     }
 }
