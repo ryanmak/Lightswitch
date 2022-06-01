@@ -5,6 +5,7 @@
 
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:allowBackup="false"
@@ -19,9 +20,13 @@
 
         <service
             android:name=".OverlayService"
-            android:exported="false"
-            android:enabled="false">
-        </service>
+            android:enabled="false"
+            android:exported="false" />
+
+        <service
+            android:name=".KeepOnService"
+            android:enabled="false"
+            android:exported="false" />
 
         <activity
             android:name=".MainActivity"
