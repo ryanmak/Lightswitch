@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: MainActivityViewModel
     private lateinit var overlayService: Intent
+    private lateinit var keepOnService: Intent
 
     private var activityLauncher = registerForActivityResult(StartActivityForResult()) {
         if (!Settings.canDrawOverlays(this)) {
@@ -42,8 +43,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         overlayService = Intent(this@MainActivity, OverlayService::class.java)
-        viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
+        keepOnService = Intent(this@MainActivity, KeepOnService::class.java)
 
+        viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
         setupFlows()
         setupListeners()
     }
@@ -77,6 +79,8 @@ class MainActivity : AppCompatActivity() {
             val enabled = id == R.id.onButtonScreenOn
             viewModel.setScreenOnEnabled(enabled)
             binding.screenOnIcon.visibility = if (enabled) View.VISIBLE else View.GONE
+
+            canKeepScreenOn(enabled)
         }
 
         binding.saveAndCloseButton.setOnClickListener {
@@ -149,6 +153,16 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun canKeepScreenOn(show: Boolean) {
+        if (show) {
+            configKeepOnService(true)
+            startService(keepOnService)
+        } else {
+            configKeepOnService(false)
+            stopService(keepOnService)
+        }
+    }
+
     /**
      * Enables or disables the app's ability to start the Overlay service. This is needed because
      * the app will always try to run the service on startup, so we only want to allow the service
@@ -158,6 +172,16 @@ class MainActivity : AppCompatActivity() {
      */
     private fun configOverlayService(enabled: Boolean) {
         val component = ComponentName(applicationContext, OverlayService::class.java)
+        val pm: PackageManager = applicationContext.packageManager
+        pm.setComponentEnabledSetting(
+            component,
+            if (enabled) PackageManager.COMPONENT_ENABLED_STATE_ENABLED else PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
+            PackageManager.DONT_KILL_APP
+        )
+    }
+
+    private fun configKeepOnService(enabled: Boolean) {
+        val component = ComponentName(applicationContext, KeepOnService::class.java)
         val pm: PackageManager = applicationContext.packageManager
         pm.setComponentEnabledSetting(
             component,

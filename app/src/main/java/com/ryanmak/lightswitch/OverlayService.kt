@@ -70,9 +70,8 @@ class OverlayService : Service() {
                 isFitInsetsIgnoringVisibility = false
                 fitInsetsTypes = 0
                 y = if (Build.VERSION.SDK_INT == Build.VERSION_CODES.R) -1 else 0
-                val metrics = DisplayMetrics()
-                wm.defaultDisplay.getRealMetrics(metrics)
-                height = metrics.heightPixels + getNavigationBarHeight() + 1
+                val metrics = wm.currentWindowMetrics
+                height = metrics.bounds.height()
             }
             if (Build.VERSION.SDK_INT == Build.VERSION_CODES.Q) {
                 val metrics = DisplayMetrics()
@@ -112,11 +111,15 @@ class OverlayService : Service() {
     }
 
     private fun getNavigationBarHeight(): Int {
-        val metrics = DisplayMetrics()
-        wm.defaultDisplay.getMetrics(metrics)
-        val usableHeight = metrics.heightPixels
-        wm.defaultDisplay.getRealMetrics(metrics)
-        val realHeight = metrics.heightPixels
-        return if (realHeight > usableHeight) realHeight - usableHeight else 0
+        return if (Build.VERSION.SDK_INT == Build.VERSION_CODES.Q) {
+            val metrics = DisplayMetrics()
+            wm.defaultDisplay.getMetrics(metrics)
+            val usableHeight = metrics.heightPixels
+            wm.defaultDisplay.getRealMetrics(metrics)
+            val realHeight = metrics.heightPixels
+            if (realHeight > usableHeight) realHeight - usableHeight else 0
+        } else {
+            0
+        }
     }
 }
