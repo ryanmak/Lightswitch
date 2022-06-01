@@ -21,14 +21,16 @@ import androidx.core.app.NotificationCompat
 
 class OverlayService : Service() {
 
+    companion object {
+        const val KEY_INTENSITY_VALUE = "intensity"
+    }
+
     private lateinit var overlay: View
     private lateinit var wm: WindowManager
-    private var intensity: Float? = 0f
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        intensity = intent?.getFloatExtra("intensity", 0f)
-
-        intensity?.let {
+        // the higher the alpha (intensity) the darker the screen will be
+        intent?.getFloatExtra(KEY_INTENSITY_VALUE, 0f)?.let {
             overlay.setBackgroundColor(Color.argb(it / 100, 0f, 0f, 0f))
         }
 
@@ -60,6 +62,8 @@ class OverlayService : Service() {
                     FLAG_LAYOUT_IN_SCREEN,     // Ignore screen bounds part 2
             PixelFormat.TRANSLUCENT
         ).apply {
+            // on Android 12+ alpha value can only go up to a maximum of 0.8f. Anymore and
+            // any touch events are absorbed by the overlay.
             alpha = 0.8f
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {

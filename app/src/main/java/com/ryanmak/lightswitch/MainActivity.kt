@@ -28,6 +28,7 @@ class MainActivity : AppCompatActivity() {
 
     private var activityLauncher = registerForActivityResult(StartActivityForResult()) {
         if (!Settings.canDrawOverlays(this)) {
+            // User still did not give permission
             Toast.makeText(this, "Permission not granted", Toast.LENGTH_SHORT).show()
         } else {
             Toast.makeText(this, "Thank you!", Toast.LENGTH_SHORT).show()
@@ -109,7 +110,7 @@ class MainActivity : AppCompatActivity() {
                     // A service only has one instance running at a time. By starting the same
                     // service again, we instead update the running service via Intent.putExtra
                     overlayService = Intent(this@MainActivity, OverlayService::class.java).apply {
-                        putExtra("intensity", value)
+                        putExtra(KEY_INTENSITY_VALUE, value)
                     }
                     startService(overlayService)
                 }
@@ -162,9 +163,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
-     * In the manifest, the [OverlayService] *enabled* property is set to false. This is because if
-     * set to true, the service will run on start up, dimming the screen even if the feature is
-     * turned off. To fix this, we set the *enabled* state here when a button click is detected.
+     * Enables or disables the app's ability to start the Overlay service. This is needed because
+     * the app will always try to run the service on startup, so we only want to allow the service
+     * to run if the setting is enabled.
+     *
+     * @param enabled If true, allow the service to run. If false, forbid the service from running
      */
     private fun configOverlayService(enabled: Boolean) {
         val component = ComponentName(applicationContext, OverlayService::class.java)
