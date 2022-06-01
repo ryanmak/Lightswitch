@@ -5,7 +5,7 @@ Dim your screen for late night browsing or keep your screen on during the day wh
 
 
 
-https://user-images.githubusercontent.com/19227507/171331356-71d71e3d-3ed3-4f59-99f3-4e0f8735e27f.mp4
+![ezgif-3-52c5f2f3c0](https://user-images.githubusercontent.com/19227507/171495415-f48b8799-ad13-467b-a546-0765d2aaadcd.gif)
 
 
 
