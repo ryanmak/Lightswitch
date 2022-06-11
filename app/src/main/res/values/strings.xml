@@ -11,4 +11,7 @@
     <string name="value_tooltip_screen_on">When enabled, the screen will permanently stay on unless you lock your screen</string>
     <string name="value_slider_description">Slider to adjust brightness</string>
     <string name="label_save_and_close">Save and Close</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+    <string name="app_widget_description">This is an app widget description</string>
 </resources>

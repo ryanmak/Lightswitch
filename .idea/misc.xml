@@ -3,7 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Ryan Mak/AndroidStudioProjects/lightswitch/app/src/main/res/drawable-v21/app_widget_background.xml" value="0.3095" />
+        <entry key="..\:/Users/Ryan Mak/AndroidStudioProjects/lightswitch/app/src/main/res/drawable/ic_night_purple.xml" value="0.1595" />
         <entry key="..\:/Users/Ryan Mak/AndroidStudioProjects/lightswitch/app/src/main/res/layout/activity_main.xml" value="0.17395833333333333" />
+        <entry key="..\:/Users/Ryan Mak/AndroidStudioProjects/lightswitch/app/src/main/res/layout/dim_on_off_widget.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Ryan Mak/AndroidStudioProjects/lightswitch/app/src/main/res/layout/new_app_widget.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Ryan Mak/AndroidStudioProjects/lightswitch/app/src/main/res/layout/on_off_widget.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Ryan Mak/AndroidStudioProjects/lightswitch/app/src/main/res/layout/widget.xml" value="0.365625" />
+        <entry key="..\:/Users/Ryan Mak/AndroidStudioProjects/lightswitch/app/src/main/res/xml/widget.xml" value="0.365625" />
       </map>
     </option>
   </component>
