@@ -1,6 +1,7 @@
 package com.ryanmak.lightswitch
 
 import android.content.ComponentName
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -10,6 +11,9 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult
 import androidx.appcompat.app.AppCompatActivity
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -19,6 +23,7 @@ import com.ryanmak.lightswitch.databinding.ActivityMainBinding
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
+private val Context.userPreferencesDataStore by preferencesDataStore("LightswitchDataStore")
 
 class MainActivity : AppCompatActivity() {
 
@@ -46,6 +51,7 @@ class MainActivity : AppCompatActivity() {
         keepOnService = Intent(this@MainActivity, KeepOnService::class.java)
 
         viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
+        viewModel.setDataStore(userPreferencesDataStore)
         setupFlows()
         setupListeners()
     }
