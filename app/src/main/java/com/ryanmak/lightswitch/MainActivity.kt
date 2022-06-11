@@ -51,7 +51,6 @@ class MainActivity : AppCompatActivity() {
         keepOnService = Intent(this@MainActivity, KeepOnService::class.java)
 
         viewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
-        viewModel.setDataStore(userPreferencesDataStore)
         setupFlows()
         setupListeners()
     }

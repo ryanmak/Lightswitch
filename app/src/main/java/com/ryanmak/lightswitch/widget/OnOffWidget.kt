@@ -9,8 +9,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.widget.RemoteViews
-import androidx.datastore.preferences.preferencesDataStore
-
 import com.ryanmak.lightswitch.R
 
 
@@ -19,7 +17,6 @@ import com.ryanmak.lightswitch.R
  */
 
 private const val ACTION_DIM_BUTTON_CLICKED = "action.DIM_BUTTON_CLICKED"
-private val Context.userPreferencesDataStore by preferencesDataStore("LightswitchDataStore")
 
 class OnOffWidget : AppWidgetProvider() {
     override fun onUpdate(
