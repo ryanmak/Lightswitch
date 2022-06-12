@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="864dp"
+    android:height="864dp"
+    android:viewportWidth="864"
+    android:viewportHeight="864">
+
+    <path
+        android:fillColor="#121212"
+        android:fillAlpha="0"
+        android:strokeColor="#000"
+        android:strokeAlpha="0"
+        android:pathData="M -50.35298 -22.58822 H 889.64706 V 872.70594 H -50.35298 V -22.58822 Z" />
+    <path
+        android:fillColor="#2b3b81"
+        android:pathData="M 227 30.82353 L 637 30.82353 Q 667 30.82353 667 60.82353 L 667 800.82353 Q 667 830.82353 637 830.82353 L 227 830.82353 Q 197 830.82353 197 800.82353 L 197 60.82353 Q 197 30.82353 227 30.82353 Z" />
+    <path
+        android:fillColor="#9dacff"
+        android:pathData="M 342.00001 167.29411 L 522.00001 167.29411 Q 532.00001 167.29411 532.00001 177.29411 L 532.00001 417.29411 Q 532.00001 427.29411 522.00001 427.29411 L 342.00001 427.29411 Q 332.00001 427.29411 332.00001 417.29411 L 332.00001 177.29411 Q 332.00001 167.29411 342.00001 167.29411 Z" />
+    <path
+        android:fillColor="#7086ff"
+        android:pathData="M 341.99999 430.82353 L 521.99999 430.82353 Q 531.99999 430.82353 531.99999 440.82353 L 531.99999 680.82353 Q 531.99999 690.82353 521.99999 690.82353 L 341.99999 690.82353 Q 331.99999 690.82353 331.99999 680.82353 L 331.99999 440.82353 Q 331.99999 430.82353 341.99999 430.82353 Z" />
+    <path
+        android:fillColor="#9dacff"
+        android:pathData="M 332.00001 314.35293 H 532.00001 V 429.64704 H 332.00001 V 314.35293 Z" />
+    <path
+        android:fillColor="#7086ff"
+        android:pathData="M 331.99999 430.82354 H 531.99999 V 529.64704 H 331.99999 V 430.82354 Z" />
+    <path
+        android:strokeColor="#121212"
+        android:strokeAlpha="0.5"
+        android:strokeWidth="5"
+        android:pathData="M 331.41174 158.47057 L 532.58822 158.47057 Q 542.58822 158.47057 542.58822 168.47057 L 542.58822 690.82355 Q 542.58822 700.82355 532.58822 700.82355 L 331.41174 700.82355 Q 321.41174 700.82355 321.41174 690.82355 L 321.41174 168.47057 Q 321.41174 158.47057 331.41174 158.47057 Z" />
+</vector>
