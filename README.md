@@ -17,4 +17,4 @@ Dim your screen for late night browsing or keep your screen on during the day wh
 - Home screen widgets for 
   - Dimmable Overlay ✔️
   - Keep Screen On 🏗
-- An app logo
+- An app logo ✔️
