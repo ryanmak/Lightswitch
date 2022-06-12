@@ -95,6 +95,8 @@ class MainActivity : AppCompatActivity() {
                         if (enabled) R.id.onButtonDim
                         else R.id.offButtonDim
                     )
+
+                    configOverlayService(applicationContext, enabled)
                 }
             }
         }
@@ -144,10 +146,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun canShowOverlay(show: Boolean) {
         if (show) {
-            configOverlayService(applicationContext, true)
             startService(overlayService)
         } else {
-            configOverlayService(applicationContext, false)
             stopService(overlayService)
         }
     }
