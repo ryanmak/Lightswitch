@@ -14,6 +14,7 @@ Dim your screen for late night browsing or keep your screen on during the day wh
 ## Roadmap to 1.0.0
 - Dimmable overlay that completely covers the device screen ✔️
 - The ability to keep your screen on ✔
-- Individual home screen widgets for Dimmable overlay and Screen On 🏗
-- Combined home screen widget for both Dimmable overlay and Screen On
-- Anything else that comes to mind (like an app logo)
+- Home screen widgets for 
+  - Dimmable Overlay ✔️
+  - Keep Screen On 🏗
+- An app logo
