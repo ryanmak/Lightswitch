@@ -36,7 +36,6 @@
             android:exported="false" />
         <service
             android:name=".KeepOnService"
-            android:enabled="false"
             android:exported="false" />
 
         <activity

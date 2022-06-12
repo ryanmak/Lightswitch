@@ -1,9 +1,6 @@
 package com.ryanmak.lightswitch
 
-import android.content.ComponentName
-import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
@@ -11,19 +8,16 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult
 import androidx.appcompat.app.AppCompatActivity
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.ryanmak.lightswitch.OverlayService.Companion.KEY_INTENSITY_VALUE
+import com.ryanmak.lightswitch.ServiceUtils.Companion.configKeepOnService
+import com.ryanmak.lightswitch.ServiceUtils.Companion.configOverlayService
 import com.ryanmak.lightswitch.databinding.ActivityMainBinding
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-
-private val Context.userPreferencesDataStore by preferencesDataStore("LightswitchDataStore")
 
 class MainActivity : AppCompatActivity() {
 
@@ -150,48 +144,21 @@ class MainActivity : AppCompatActivity() {
 
     private fun canShowOverlay(show: Boolean) {
         if (show) {
-            configOverlayService(true)
+            configOverlayService(applicationContext, true)
             startService(overlayService)
         } else {
-            configOverlayService(false)
+            configOverlayService(applicationContext, false)
             stopService(overlayService)
         }
     }
 
     private fun canKeepScreenOn(show: Boolean) {
         if (show) {
-            configKeepOnService(true)
+            configKeepOnService(applicationContext, true)
             startService(keepOnService)
         } else {
-            configKeepOnService(false)
+            configKeepOnService(applicationContext, false)
             stopService(keepOnService)
         }
-    }
-
-    /**
-     * Enables or disables the app's ability to start the Overlay service. This is needed because
-     * the app will always try to run the service on startup, so we only want to allow the service
-     * to run if the setting is enabled.
-     *
-     * @param enabled If true, allow the service to run. If false, forbid the service from running
-     */
-    private fun configOverlayService(enabled: Boolean) {
-        val component = ComponentName(applicationContext, OverlayService::class.java)
-        val pm: PackageManager = applicationContext.packageManager
-        pm.setComponentEnabledSetting(
-            component,
-            if (enabled) PackageManager.COMPONENT_ENABLED_STATE_ENABLED else PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
-            PackageManager.DONT_KILL_APP
-        )
-    }
-
-    private fun configKeepOnService(enabled: Boolean) {
-        val component = ComponentName(applicationContext, KeepOnService::class.java)
-        val pm: PackageManager = applicationContext.packageManager
-        pm.setComponentEnabledSetting(
-            component,
-            if (enabled) PackageManager.COMPONENT_ENABLED_STATE_ENABLED else PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
-            PackageManager.DONT_KILL_APP
-        )
     }
 }
