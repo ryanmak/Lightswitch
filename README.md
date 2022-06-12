@@ -18,3 +18,4 @@ Dim your screen for late night browsing or keep your screen on during the day wh
   - Dimmable Overlay ✔️
   - Keep Screen On 🏗
 - An app logo ✔️
+- All issues resolved
