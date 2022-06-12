@@ -1,13 +1,13 @@
 package com.ryanmak.lightswitch.datastore
 
 import android.content.Context
-import androidx.datastore.core.DataStore
-import androidx.datastore.dataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.floatPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
+import com.ryanmak.lightswitch.datastore.DataStoreUtils.Companion.KEY_DIM_ENABLED
+import com.ryanmak.lightswitch.datastore.DataStoreUtils.Companion.KEY_DIM_INTENSITY
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -15,6 +15,7 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.sync.Mutex
 
 private val Context.userPreferencesDataStore by preferencesDataStore("LightswitchDataStore")
 
