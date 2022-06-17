@@ -85,9 +85,9 @@ class MainActivity : AppCompatActivity() {
             canKeepScreenOn(enabled)
         }
 
-        binding.saveAndCloseButton.setOnClickListener {
-            finish()
-        }
+        binding.saveAndCloseButton.setOnClickListener { finish() }
+        binding.dimInfoButton.setOnClickListener { it.performLongClick() }
+        binding.screenOnInfoButton.setOnClickListener { it.performLongClick() }
     }
 
     private fun setupFlows() {
