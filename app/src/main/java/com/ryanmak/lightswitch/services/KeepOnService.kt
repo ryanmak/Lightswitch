@@ -1,4 +1,4 @@
-package com.ryanmak.lightswitch
+package com.ryanmak.lightswitch.services
 
 import android.annotation.SuppressLint
 import android.app.Notification

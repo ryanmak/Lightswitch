@@ -11,9 +11,9 @@ import android.content.Intent
 import android.os.Build
 import android.provider.Settings
 import android.widget.RemoteViews
-import com.ryanmak.lightswitch.OverlayService
+import com.ryanmak.lightswitch.services.OverlayService
 import com.ryanmak.lightswitch.R
-import com.ryanmak.lightswitch.ServiceUtils
+import com.ryanmak.lightswitch.services.ServiceUtils
 import com.ryanmak.lightswitch.datastore.DataStoreUtils
 import com.ryanmak.lightswitch.datastore.DataStoreUtils.Companion.KEY_DIM_ENABLED
 

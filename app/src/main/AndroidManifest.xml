@@ -31,11 +31,11 @@
         </receiver>
 
         <service
-            android:name=".OverlayService"
+            android:name=".services.OverlayService"
             android:enabled="false"
             android:exported="false" />
         <service
-            android:name=".KeepOnService"
+            android:name=".services.KeepOnService"
             android:exported="false" />
 
         <activity
