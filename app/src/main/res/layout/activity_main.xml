@@ -114,16 +114,11 @@
                 android:layout_marginEnd="8dp"
                 android:contentDescription="@string/value_slider_description"
                 android:enabled="false"
-                android:stepSize="1"
-                android:valueFrom="0"
-                android:valueTo="100"
+                android:theme="@style/Lightswitch.Slider"
                 app:labelBehavior="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView3"
-                app:thumbColor="@color/urban_blue"
-                app:tickVisible="false"
-                app:trackColor="@color/urban_blue" />
+                app:layout_constraintTop_toBottomOf="@+id/textView3"/>
 
             <ImageView
                 android:id="@+id/dimInfoButton"

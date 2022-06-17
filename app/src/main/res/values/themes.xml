@@ -3,11 +3,11 @@
     <style name="Theme.Lightswitch" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/winter_blue</item>
-        <item name="colorPrimaryVariant">@color/twilight_blue</item>
+        <item name="colorPrimaryVariant">@color/winter_blue</item>
         <item name="colorOnPrimary">@color/background_black</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/urban_blue</item>
-        <item name="colorSecondaryVariant">@color/urban_blue</item>
+        <item name="colorSecondaryVariant">@color/background_black</item>
         <item name="colorOnSecondary">@color/background_black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">@color/black</item>

@@ -9,4 +9,13 @@
         <item name="android:background">?android:attr/colorBackground</item>
         <item name="android:textColor">?android:attr/textColorPrimary</item>
     </style>
+
+    <style name="Lightswitch.Slider" parent="Widget.Material3.Slider">
+        <item name="android:stepSize">1</item>
+        <item name="android:valueFrom">0</item>
+        <item name="android:valueTo">100</item>
+        <item name="thumbColor">@color/winter_blue</item>
+        <item name="trackColorActive">@color/winter_blue</item>
+        <item name="tickVisible">false</item>
+    </style>
 </resources>
