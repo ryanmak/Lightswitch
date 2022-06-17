@@ -2,22 +2,24 @@ package com.ryanmak.lightswitch
 
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.ryanmak.lightswitch.services.OverlayService.Companion.KEY_INTENSITY_VALUE
-import com.ryanmak.lightswitch.services.ServiceUtils.Companion.configKeepOnService
-import com.ryanmak.lightswitch.services.ServiceUtils.Companion.configOverlayService
 import com.ryanmak.lightswitch.databinding.ActivityMainBinding
 import com.ryanmak.lightswitch.services.KeepOnService
 import com.ryanmak.lightswitch.services.OverlayService
+import com.ryanmak.lightswitch.services.OverlayService.Companion.KEY_INTENSITY_VALUE
+import com.ryanmak.lightswitch.services.ServiceUtils.Companion.configKeepOnService
+import com.ryanmak.lightswitch.services.ServiceUtils.Companion.configOverlayService
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -34,7 +36,6 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "Permission not granted", Toast.LENGTH_SHORT).show()
         } else {
             Toast.makeText(this, "Thank you!", Toast.LENGTH_SHORT).show()
-            viewModel.setDimEnabled(true)
         }
     }
 
@@ -59,7 +60,7 @@ class MainActivity : AppCompatActivity() {
             if (enabled && !Settings.canDrawOverlays(this)) {
                 radioGroup.check(R.id.offButtonDim)
                 viewModel.setDimEnabled(false)
-                launchPermissionActivity()
+                showInfoDialog()
                 return@setOnCheckedChangeListener
             }
 
@@ -131,6 +132,31 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun showInfoDialog() {
+        // starting with android 11+, the user is not immediately brought to the app specific
+        // permission screen; they may need additional instruction on what to do next
+        val additionalInstructions = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            getString(R.string.permission_required_message_search)
+        } else {
+            ""
+        }
+
+        AlertDialog.Builder(this, R.style.LightswitchAlertDialog)
+            .setTitle(getString(R.string.permission_required_title))
+            .setMessage("${getString(R.string.permission_required_message)} $additionalInstructions")
+            .setPositiveButton(getString(R.string.label_ok)) { _, _ ->
+                launchPermissionActivity()
+            }
+            .setNegativeButton(getString(R.string.label_cancel)) { _, _ ->
+                Toast.makeText(this, "Permission not granted", Toast.LENGTH_SHORT).show()
+            }
+            //.setNeutralButton(getString(R.string.label_info)) { _, _ ->
+            // TODO how technical do we want to be???
+            //}
+            .create()
+            .show()
     }
 
     /**
