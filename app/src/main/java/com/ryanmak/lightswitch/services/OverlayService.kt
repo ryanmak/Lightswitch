@@ -1,4 +1,4 @@
-package com.ryanmak.lightswitch
+package com.ryanmak.lightswitch.services
 
 import android.annotation.SuppressLint
 import android.app.Notification
@@ -17,6 +17,7 @@ import android.view.View
 import android.view.WindowManager
 import android.view.WindowManager.LayoutParams.*
 import androidx.core.app.NotificationCompat
+import com.ryanmak.lightswitch.R
 
 
 class OverlayService : Service() {
