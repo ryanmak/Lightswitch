@@ -91,7 +91,7 @@ class OverlayService : Service() {
 
     private fun startOverlayService() {
         val channelId = "overlay_service"
-        val channelName = "Background Service"
+        val channelName = "Background Service 2"
         val channel = NotificationChannel(
             channelId,
             channelName,
@@ -103,8 +103,9 @@ class OverlayService : Service() {
 
         val notificationBuilder = NotificationCompat.Builder(this, channelId)
         val notification: Notification = notificationBuilder.setOngoing(true)
-            .setContentTitle("Service running")
-            .setContentText("Displaying over other apps")
+            .setSmallIcon(R.drawable.ic_night)
+            .setContentTitle(getString(R.string.overlay_notification_title))
+            .setContentText(getString(R.string.overlay_notification_body))
             .setPriority(NotificationManager.IMPORTANCE_MIN)
             .setCategory(Notification.CATEGORY_SERVICE)
             .build()

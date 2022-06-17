@@ -10,6 +10,7 @@ import android.os.IBinder
 import android.os.PowerManager
 import android.os.PowerManager.WakeLock
 import androidx.core.app.NotificationCompat
+import com.ryanmak.lightswitch.R
 
 
 class KeepOnService : Service() {
@@ -41,7 +42,7 @@ class KeepOnService : Service() {
 
     private fun startScreenOnService() {
         val channelId = "keep_on_service"
-        val channelName = "Background Service"
+        val channelName = "Background Service 1"
         val channel = NotificationChannel(
             channelId,
             channelName,
@@ -53,8 +54,9 @@ class KeepOnService : Service() {
 
         val notificationBuilder = NotificationCompat.Builder(this, channelId)
         val notification: Notification = notificationBuilder.setOngoing(true)
-            .setContentTitle("Service running")
-            .setContentText("Displaying over other apps")
+            .setSmallIcon(R.drawable.ic_bulb_lighting)
+            .setContentTitle(getString(R.string.screen_on_notification_title))
+            .setContentText(getString(R.string.screen_on_notification_body))
             .setPriority(NotificationManager.IMPORTANCE_MIN)
             .setCategory(Notification.CATEGORY_SERVICE)
             .build()
