@@ -20,4 +20,8 @@
     <string name="label_ok">OK</string>
     <string name="label_cancel">Cancel</string>
     <string name="label_info">Info</string>
+    <string name="overlay_notification_title">Screen Dim ACTIVE</string>
+    <string name="overlay_notification_body">Your screen now appears darker</string>
+    <string name="screen_on_notification_title">Keep Screen On ACTIVE</string>
+    <string name="screen_on_notification_body">Your screen will now stay on</string>
 </resources>
