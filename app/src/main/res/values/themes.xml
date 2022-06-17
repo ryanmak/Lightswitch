@@ -29,4 +29,15 @@
         <!-- Apply padding to avoid the content of the widget colliding with the rounded corners -->
         <item name="appWidgetPadding">16dp</item>
     </style>
+
+    <style name="LightswitchAlertDialog" parent="ThemeOverlay.MaterialComponents.Dialog.Alert">
+        <item name="titleTextColor">@color/white_text_body</item>
+        <item name="materialAlertDialogBodyTextStyle">@style/ButtonColour</item>
+        <item name="buttonBarPositiveButtonStyle">@style/ButtonColour</item>
+        <item name="buttonBarNegativeButtonStyle">@style/ButtonColour</item>
+        <item name="buttonBarNeutralButtonStyle">@style/ButtonColour</item>
+    </style>
+    <style name="ButtonColour" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/white_text_body</item>
+    </style>
 </resources>

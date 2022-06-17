@@ -14,4 +14,10 @@
     <string name="appwidget_text">EXAMPLE</string>
     <string name="add_widget">Add widget</string>
     <string name="app_widget_description">This is an app widget description</string>
+    <string name="permission_required_message">This app needs your permission to display over other apps. This is required because this app will draw an overlay on the screen in which you will then be able to adjust its brightness. </string>
+    <string name="permission_required_message_search">Once you are brought to the new screen, search for the Lightswitch app, click on it, and enable the setting.</string>
+    <string name="permission_required_title">Display Permission Required</string>
+    <string name="label_ok">OK</string>
+    <string name="label_cancel">Cancel</string>
+    <string name="label_info">Info</string>
 </resources>
