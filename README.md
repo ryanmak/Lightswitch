@@ -11,7 +11,7 @@ Dim your screen for late night browsing or keep your screen on during the day wh
 
 
 
-## Roadmap to 1.0.0
+## 1.0.0 Features
 - Dimmable overlay that completely covers the device screen ✔️
 - The ability to keep your screen on ✔️
 - Home screen widgets for 
