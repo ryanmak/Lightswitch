@@ -1,4 +1,6 @@
 # Lightswitch
+[Now available on the Play Store](https://play.google.com/store/apps/details?id=com.ryanmak.lightswitch)
+
 Dim your screen for late night browsing or keep your screen on during the day when you want to avoid the lock screen.
 
 
@@ -12,10 +14,8 @@ Dim your screen for late night browsing or keep your screen on during the day wh
 
 
 ## 1.0.0 Features
-- Dimmable overlay that completely covers the device screen ✔️
-- The ability to keep your screen on ✔️
-- Home screen widgets for 
-  - Dimmable Overlay ✔️
-  - Keep Screen On ✔️
-- An app logo ✔️
-- All issues resolved ✔️
+- Dimmable overlay that completely covers the device screen
+- The ability to keep your screen on
+- Home screen widgets for
+  - Dimmable Overlay
+  - Keep Screen On
